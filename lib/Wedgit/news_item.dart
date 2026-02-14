@@ -36,9 +36,9 @@ class NewsItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       height: 345,
       decoration: BoxDecoration(
-        color: AppColors.whiteColor,
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(28),
-        border: Border.all(),
+        border: Border.all(color: Theme.of(context).splashColor),
       ),
       child: Column(
         children: [
@@ -46,11 +46,16 @@ class NewsItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
             child: CachedNetworkImage(
               imageUrl: article.urlToImage ?? "",
-              placeholder: (context, url) => const SizedBox(
+              placeholder: (context, url) => SizedBox(
                 height: 252,
-                child: Center(child: CircularProgressIndicator()),
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: Theme.of(context).splashColor,
+                  ),
+                ),
               ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+              errorWidget: (context, url, error) =>
+                  Icon(Icons.error, color: Theme.of(context).splashColor),
               height: 252,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -60,7 +65,11 @@ class NewsItem extends StatelessWidget {
             article.title ?? "",
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              color: Theme.of(context).splashColor,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 2),
           Row(
@@ -71,7 +80,8 @@ class NewsItem extends StatelessWidget {
                   article.author == null ? "" : "by : ${article.author}",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
+                    color: Theme.of(context).splashColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
@@ -84,7 +94,8 @@ class NewsItem extends StatelessWidget {
                       : (article.publishedAt ?? ""),
                   textAlign: TextAlign.end,
                   maxLines: 1,
-                  style: const TextStyle(
+                  style: TextStyle(
+                    color: Theme.of(context).splashColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
@@ -101,9 +112,9 @@ class NewsItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: AppColors.whiteColor,
+        color: Theme.of(context).splashColor,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: Colors.black26),
+        border: Border.all(color: Theme.of(context).primaryColor),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -127,14 +138,21 @@ class NewsItem extends StatelessWidget {
             article.title ?? "",
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 8),
           Text(
             article.description ?? "",
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 14, color: Colors.black87),
+            style: TextStyle(
+              fontSize: 14,
+              color: Theme.of(context).primaryColor,
+            ),
           ),
           const SizedBox(height: 12),
           Align(
@@ -151,15 +169,19 @@ class NewsItem extends StatelessWidget {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
+                  backgroundColor: Theme.of(context).primaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
-                child: const Text(
+                child: Text(
                   'View Full Article',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: .w700,
+                    color: Theme.of(context).splashColor,
+                  ),
                 ),
               ),
             ),

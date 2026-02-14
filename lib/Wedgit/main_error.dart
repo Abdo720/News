@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news/Core/Colors.dart';
 
 class MainError extends StatelessWidget {
@@ -12,8 +13,24 @@ class MainError extends StatelessWidget {
       child: Column(
         mainAxisAlignment: .center,
         children: [
-          Text(errorMassage, style: TextStyle(color: AppColors.blackColor)),
-          ElevatedButton(onPressed: onclick, child: Text("Try Again")),
+          Text(
+            errorMassage,
+            style: TextStyle(color: Theme.of(context).splashColor),
+          ),
+          ElevatedButton(
+            onPressed: onclick,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).primaryColor,
+            ),
+            child: Text(
+              "Try Again",
+              style: GoogleFonts.inter(
+                color: Theme.of(context).splashColor,
+                fontSize: 20,
+                fontWeight: .bold,
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -47,13 +47,31 @@ class _NewsdataviewState extends State<Newsdataview> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MainLoad();
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
+          return Center(
+            child: Text(
+              'Error: ${snapshot.error}',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Theme.of(context).splashColor,
+              ),
+            ),
+          );
         }
 
         List<Articles> articles = snapshot.data?.articles ?? [];
 
         if (articles.isEmpty) {
-          return const Center(child: Text('No articles found'));
+          return Center(
+            child: Text(
+              'No articles found',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Theme.of(context).splashColor,
+              ),
+            ),
+          );
         }
 
         return Padding(

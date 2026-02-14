@@ -9,7 +9,8 @@ import 'package:news/models/news_respons.dart';
 import 'package:news/models/source_respons.dart';
 
 class SuorceView extends StatefulWidget {
-  SuorceView({super.key});
+  String categoryId;
+  SuorceView({super.key, required this.categoryId});
 
   @override
   State<SuorceView> createState() => _SuorceViewState();
@@ -21,12 +22,12 @@ class _SuorceViewState extends State<SuorceView> {
   @override
   void initState() {
     super.initState();
-    sourcesFuture = ApiManager.getSources();
+    sourcesFuture = ApiManager.getSources(widget.categoryId);
   }
 
   void _retry() {
     setState(() {
-      sourcesFuture = ApiManager.getSources();
+      sourcesFuture = ApiManager.getSources(widget.categoryId);
     });
   }
 
@@ -77,7 +78,7 @@ class _SuorceViewState extends State<SuorceView> {
               length: sources.length,
               child: TabBar(
                 isScrollable: true,
-                indicatorColor: AppColors.blackColor,
+                indicatorColor: Theme.of(context).splashColor,
                 tabAlignment: TabAlignment.start,
                 onTap: (value) {
                   selectedIndex = value;
@@ -88,7 +89,9 @@ class _SuorceViewState extends State<SuorceView> {
                       (e) => Tab(
                         child: Text(
                           e.name ?? "",
-                          style: TextStyle(color: AppColors.blackColor),
+                          style: TextStyle(
+                            color: Theme.of(context).splashColor,
+                          ),
                         ),
                       ),
                     )

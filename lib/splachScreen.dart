@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news/Core/Colors.dart';
 import 'package:news/appScreen.dart';
+import 'package:news/providers/themeprovider.dart';
+import 'package:provider/provider.dart';
 
 class Splachscreen extends StatefulWidget {
   static String routeName = "splachScreen";
@@ -25,15 +27,23 @@ class _SplachscreenState extends State<Splachscreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProv = Provider.of<Themeprovider>(context);
     return Scaffold(
-      backgroundColor: AppColors.blackColor,
       body: Center(
         child: Column(
           children: [
             Spacer(),
-            Image.asset("assets/images/news_logo.png"),
+            Image.asset(
+              themeProv.theme == ThemeMode.light
+                  ? "assets/images/news_logo_light.png"
+                  : "assets/images/news_logo.png",
+            ),
             Spacer(),
-            Image.asset("assets/images/ABDO Abdullah Mohammed.png"),
+            Image.asset(
+              themeProv.theme == ThemeMode.light
+                  ? "assets/images/ABDO Abdullah Mohammed_light.png"
+                  : "assets/images/ABDO Abdullah Mohammed.png",
+            ),
             SizedBox(height: 90),
           ],
         ),

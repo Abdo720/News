@@ -6,10 +6,10 @@ import 'package:news/models/source_respons.dart';
 class ApiManager {
   static Dio dio = Dio();
 
-  static Future<SourceRespons> getSources() async {
+  static Future<SourceRespons> getSources(String categoryId) async {
     try {
       Response response = await dio.get(
-        "${ApiConstants.baseUrl}/v2/top-headlines/sources?apiKey=${ApiConstants.apiKey}",
+        "${ApiConstants.baseUrl}/v2/top-headlines/sources?apiKey=${ApiConstants.apiKey}&category=$categoryId",
       );
       SourceRespons sourceRespons = SourceRespons.fromJson(response.data);
       return sourceRespons;

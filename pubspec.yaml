@@ -39,6 +39,8 @@ dependencies:
   dio: ^5.9.1
   cached_network_image: ^3.4.1
   url_launcher: ^6.3.2
+  google_fonts: ^8.0.1
+  provider: ^6.1.5+1
 
 dev_dependencies:
   flutter_test:
